@@ -19,7 +19,6 @@ Repository of sorting algorithms in C.
   1. Selection sort
   2. Insertion sort
   3. Shell sort
-  4. Quick sort
   5. Heap sort
   6. Merge sort  
 
@@ -46,7 +45,6 @@ To run the program, type:
 | -a            | selection     |
 |               |   insertion   |
 |               |     shell     | 
-|               | quick         | 
 |               | heap          | 
 |               | merge         | 
 | -n            | int > 0       |
