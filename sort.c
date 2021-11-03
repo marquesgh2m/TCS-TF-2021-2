@@ -84,42 +84,6 @@ void shell_sort(int *array, int size) {
     }
 }
 
-void quick_sort(int array[], int left, int right) {
-    int i, j, pivot, y;
-    i = left;
-    j = right;
-
-    pivot = array[(i+j) / 2];
-
-    while(i <= j) {
-        while(array[i] < pivot && i < right){
-            i++;
-            numberOfComparisons++;
-        }
-        while(array[j] > pivot && j > left){
-            j--;
-            numberOfComparisons++;
-        }
-        if(i <= j){
-            y = array[i];
-            array[i] = array[j];
-            array[j] = y;
-            i++;
-            j--;
-            numberOfSwaps++;
-        }
-    }
-    /** Recursive call for the function to the left part of the array */
-    if(j > left){
-        quick_sort(array, left, j);
-    }
-
-    /** Recursive call for the function to the right part of the array */
-    if(i < right){
-        quick_sort(array, i, right);
-    }
-}
-
 void heap_sort(int array[], int n){
     int i = n/2, father, child, t;
 
@@ -220,12 +184,6 @@ int* sort_array(int *array, int size, int method){
         case SHELL:
             start = clock();
             shell_sort(array, size);
-            end = clock();
-        break;
-
-        case QUICK:
-            start = clock();
-            quick_sort(array, 0, size);
             end = clock();
         break;
 
