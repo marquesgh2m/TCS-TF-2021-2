@@ -2,6 +2,7 @@
 #include "unity_fixture.h"
 #include <time.h>
 #include <stdlib.h>
+#include "../../../../sort.h"
 
 TEST_GROUP(Sort);
 
@@ -38,7 +39,7 @@ TEST(Sort, TestSort1)
     }
     printf("\n");
 
-    sort_array(out_vector, vector_size, 3);
+    sort_array(out_vector, vector_size, QUICK);
 
     // Print dos valores ordenados
     printf("\n\tSorted vector:");
@@ -50,9 +51,7 @@ TEST(Sort, TestSort1)
     // All of these should pass
     //for(n=0;n<vector_size;n++) {
     //    TEST_ASSERT_EQUAL(in_vector[n], out_vector[vector_size-n-1]);
-    //}
-
-    
+    //}  
 }
 
 // Testa elemento a elemento ordenado
