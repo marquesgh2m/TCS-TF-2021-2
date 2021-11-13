@@ -1,5 +1,22 @@
-sort
+# Sort Test Routines
 ====
+
+Test results:  
+[![CircleCI](https://circleci.com/gh/marquesgh2m/TCS-TF-2021-2/tree/main.svg?style=svg)](https://circleci.com/gh/marquesgh2m/TCS-TF-2021-2/tree/main)  
+[![CircleCI](https://circleci.com/gh/marquesgh2m/TCS-TF-2021-2/tree/main.svg?style=shield)](https://circleci.com/gh/marquesgh2m/TCS-TF-2021-2/tree/main)  
+
+Important files:
+
+* [Makefile](Unity/examples/sort/makefile)
+* [.circleci/config.yml](.circleci/config.yml)
+* [TestSort.c](Unity/examples/sort/test/TestSort.c)
+
+
+Authors
+------
+[**Alexandre Hampel**](https://br.linkedin.com/)  
+[**Guilherme Marques**](https://br.linkedin.com/)  
+[**Rafael Garibotti**](https://br.linkedin.com/in/rafaelgaribotti)  
 
 Obs.: **Modified to remove CUDA code.**
 
