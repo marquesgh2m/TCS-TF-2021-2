@@ -3,7 +3,21 @@
 
 TEST_GROUP_RUNNER(Sort)
 {
-  RUN_TEST_CASE(Sort, TestSort1);
-  RUN_TEST_CASE(Sort, TestSort2);
-  RUN_TEST_CASE(Sort, TestSort3);
+    RUN_TEST_CASE(Sort, SelectionSortNormalCasePositive);
+    RUN_TEST_CASE(Sort, SelectionSortWorstCasePositive);
+    RUN_TEST_CASE(Sort, SelectionSortEqualCasePositive);
+
+
+
+
+
+    //RUN_TEST_CASE(Sort, insertion_sort_test1);
+
+    //RUN_TEST_CASE(Sort, shell_sort_test1);
+
+    //RUN_TEST_CASE(Sort, quick_sort_test1);
+
+    //RUN_TEST_CASE(Sort, heap_sort_test1);
+
+    //RUN_TEST_CASE(Sort, merge_sort_test1);
 }
