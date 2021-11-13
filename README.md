@@ -11,7 +11,7 @@ Important files:
 * [TestSort.c](Unity/examples/sort/test/TestSort.c)
 
 
-Authors
+### Authors
 ------
 [**Alexandre Hampel**](https://br.linkedin.com/)  
 [**Guilherme Marques**](https://br.linkedin.com/)  
