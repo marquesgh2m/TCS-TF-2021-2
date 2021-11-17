@@ -50,7 +50,9 @@ TEST(Sort,SelectionSortNormalCasePositive){
     int output[SIZE];
     memcpy(output, normal_case_positive_vector, SIZE * sizeof(int));
 
+    printv("in", output, SIZE);
     sort_array(output, SIZE, SELECTION);
+    printv("out", output, SIZE);
 
     for (int i = 0; i < SIZE; ++i)
     {

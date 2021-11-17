@@ -57,13 +57,11 @@ SYMBOLS=\
   src/array.o \
   src/sort.o
 
-
 # TEST PARAMETERS
 CPPCHECKFILE=cppcheck.log
 
-#all: clean testcppcheck compile testvalgrind run compilesanitizer
 
-all: clean testcppcheck compile testvalgrind run
+all: clean testcppcheck compile testgcov testvalgrind run compilesanitizer
 
 compile:
 	@echo "===== COMPILATION ====="
@@ -84,11 +82,17 @@ testvalgrind:
 	@echo "===== TEST VALGRIND ====="
 	@valgrind --leak-check=full --show-leak-kinds=all ./all_tests.out
 
+compilesanitizer:
+	@echo "===== SANITIZER COMPILATION ====="
+	$(C_COMPILER) -g -Wall -Wfatal-errors -fsanitize=address $(INC_DIRS) $(SYMBOLS) $(SRC_FILES1) -o $(TARGET1)
+
 testgcov:
+	@echo "===== TEST GCOV COMP ====="
 	rm -fr $(ALL) *.o cov* *.dSYM *.gcda *.gcno *.gcov
 	$(C_COMPILER) $(CFLAGS) -fprofile-arcs -ftest-coverage $(INC_DIRS) $(SYMBOLS) $(SRC_FILES1) -o $(TARGET1)
 	./$(TARGET1) -v
 	rm -r unity*
+	mkdir -p coverage
 	gcov ***.gcno -m
 	gcovr -r . --html --html-details -o coverage/index.html
 
