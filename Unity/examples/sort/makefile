@@ -57,21 +57,36 @@ SYMBOLS=\
   src/array.o \
   src/sort.o
 
-all: clean compile run
+
+# TEST PARAMETERS
+CPPCHECKFILE=cppcheck.log
+
+#all: clean testcppcheck compile testvalgrind run compilesanitizer
+
+all: clean testcppcheck compile run
 
 compile:
+	@echo "===== COMPILATION ====="
 	$(C_COMPILER) $(CFLAGS) $(INC_DIRS) $(SYMBOLS) $(SRC_FILES1) -o $(TARGET1)
 
 run:
+	@echo "===== RUNNING ====="
 	- ./$(TARGET1) -v
 
+testcppcheck:
+	@echo "===== TEST CPP CHECK ====="
+	@rm -rf $(CPPCHECKFILE)
+	@cppcheck --output-file=$(CPPCHECKFILE) src/sort.c
+	@test ! -s $(CPPCHECKFILE) || (echo CPPCHECK ERROR! && cat $(CPPCHECKFILE) && exit 1) 
+	@echo "OK"
+
 testgcov:
+	rm -fr $(ALL) *.o cov* *.dSYM *.gcda *.gcno *.gcov
 	$(C_COMPILER) $(CFLAGS) -fprofile-arcs -ftest-coverage $(INC_DIRS) $(SYMBOLS) $(SRC_FILES1) -o $(TARGET1)
 	./$(TARGET1) -v
 	rm -r unity*
 	gcov ***.gcno -m
 	gcovr -r . --html --html-details -o coverage/index.html
-	#rm -fr $(ALL) *.o cov* *.dSYM *.gcda *.gcno *.gcov
 
 clean:
 	$(CLEANUP) $(TARGET1)

@@ -56,3 +56,6 @@ app
 *.gcov
 *.gcda
 *.gcno
+
+#log files
+*.log
