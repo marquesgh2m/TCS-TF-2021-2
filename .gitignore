@@ -56,7 +56,6 @@ app
 *.gcov
 *.gcda
 *.gcno
-coverage/
 
 #log files
 *.log
