@@ -36,21 +36,31 @@ TEST_GROUP_RUNNER(Sort)
 
     /////////////////////////////////////////////////////////////////////////////////// 
     /////////////////////////// QUICK SORT
+    RUN_TEST_CASE(Sort, QuickSortNormalCasePositive);
+    RUN_TEST_CASE(Sort, QuickSortWorstCasePositive);
+    RUN_TEST_CASE(Sort, QuickSortEqualCasePositive);
+
+    RUN_TEST_CASE(Sort, QuickSortNormalCaseNegative);
+    RUN_TEST_CASE(Sort, QuickSortWorstCaseNegative);
+    RUN_TEST_CASE(Sort, QuickSortEqualCaseNegative);
 
     /////////////////////////////////////////////////////////////////////////////////// 
     /////////////////////////// HEAP SORT
+    RUN_TEST_CASE(Sort, HeapSortNormalCasePositive);
+    RUN_TEST_CASE(Sort, HeapSortWorstCasePositive);
+    RUN_TEST_CASE(Sort, HeapSortEqualCasePositive);
+
+    RUN_TEST_CASE(Sort, HeapSortNormalCaseNegative);
+    RUN_TEST_CASE(Sort, HeapSortWorstCaseNegative);
+    RUN_TEST_CASE(Sort, HeapSortEqualCaseNegative);
 
     /////////////////////////////////////////////////////////////////////////////////// 
     /////////////////////////// MERGE SORT
+    RUN_TEST_CASE(Sort, MergeSortNormalCasePositive);
+    RUN_TEST_CASE(Sort, MergeSortWorstCasePositive);
+    RUN_TEST_CASE(Sort, MergeSortEqualCasePositive);
 
-
-    //RUN_TEST_CASE(Sort, insertion_sort_test1);
-
-    //RUN_TEST_CASE(Sort, shell_sort_test1);
-
-    //RUN_TEST_CASE(Sort, quick_sort_test1);
-
-    //RUN_TEST_CASE(Sort, heap_sort_test1);
-
-    //RUN_TEST_CASE(Sort, merge_sort_test1);
+    RUN_TEST_CASE(Sort, MergeSortNormalCaseNegative);
+    RUN_TEST_CASE(Sort, MergeSortWorstCaseNegative);
+    RUN_TEST_CASE(Sort, MergeSortEqualCaseNegative);
 }
