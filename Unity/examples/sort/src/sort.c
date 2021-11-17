@@ -21,8 +21,9 @@
 #include<stdlib.h>
 
 void selection_sort(int *array, int size){
-    //char* string = malloc(5 * sizeof(char)); //Valgrind debug. LEAK: not freed!
     int i, j, min, aux;
+    //char* string = malloc(5 * sizeof(char)); //Valgrind debug. LEAK: not freed!
+    //char *c = (char*)malloc(10 * sizeof(char*)); free(c); i=c[5]; // Sanitizer test
       for (i = 0; i < (size-1); i++){
         min = i;
         for (j = (i+1); j < size; j++) {

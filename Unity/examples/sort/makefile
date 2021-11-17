@@ -46,8 +46,12 @@ CFLAGS += -Wno-discarded-qualifiers
 CFLAGS += $(addprefix -Xcompiler ,$(CCFLAGS))
 CFLAGS += $(addprefix -Xlinker ,$(LDFLAGS))
 CFLAGS += -fprofile-arcs #GCOV
-CFLAGS += -ftest-coverage #GCOV
+CFLAGS += -ftest-coverage #GCOV 
 
+SANITIZERFLAGS=-fsanitize=address #Sanitizer 
+SANITIZERFLAGS += -fno-omit-frame-pointer #Sanitizer 
+SANITIZERFLAGS += -static-libasan #Sanitizer 
+SANITIZERFLAGS += -g  #Sanitizer -
 
 TARGET_BASE1=all_tests
 TARGET1 = $(TARGET_BASE1)$(TARGET_EXTENSION)
@@ -67,12 +71,14 @@ SYMBOLS=
 # TEST PARAMETERS
 CPPCHECKFILE=cppcheck.log
 VALGRINDFILE=valgrind.log
+SANITIZERFILE=sanitizer.log
 
-all: clean testcppcheck compile testvalgrind run compilesanitizer testgcov
+all: clean testcppcheck compile testvalgrind run testgcov compilesanitizer
 
 compile:
 	@echo "===== COMPILATION ====="
 	$(C_COMPILER) $(CFLAGS) $(INC_DIRS) $(SYMBOLS) $(SRC_FILES1) -o $(TARGET1)
+
 
 run:
 	@echo "===== RUNNING ====="
@@ -92,23 +98,19 @@ testvalgrind:
 	@test ! -s $(VALGRINDFILE) || (echo VALGRIND MEMORY ERROR! Log at $(VALGRINDFILE) && exit 1)  
 
 compilesanitizer:
-	@echo "===== SANITIZER COMPILATION ====="
-	$(C_COMPILER) -g -Wall -Wfatal-errors -fsanitize=address $(INC_DIRS) $(SYMBOLS) $(SRC_FILES1) -o $(TARGET1)
+	@echo "===== COMPILATION WITH SANITIZER  ====="
+	@$(C_COMPILER) $(CFLAGS) $(SANITIZERFLAGS) $(INC_DIRS) $(SYMBOLS) $(SRC_FILES1) -o $(TARGET1)
+	@./$(TARGET1) 2> $(SANITIZERFILE) || (echo SANITIZER ADDRESS ERROR! && cat $(SANITIZERFILE) && exit 1) 
 
 testgcov:
 	@echo "===== TEST GCOV COMP ====="
-	#rm -fr $(ALL) *.o cov* *.dSYM *.gcda *.gcno *.gcov
-	#rm -fr cov* *.dSYM *.gcda *.gcno *.gcov
-	#ADD TO CFLAGS += -fprofile-arcs #GCOV
-	#ADD TO CFLAGS += -ftest-coverage #GCOV
-	#$(C_COMPILER) $(CFLAGS) -fprofile-arcs -ftest-coverage $(INC_DIRS) $(SYMBOLS) $(SRC_FILES1) -o $(TARGET1)
-	#./$(TARGET1) -v
 	@rm -rf unity* # exclui pastas da unity do gcov
 	@mkdir -p coverage
 	@gcov ***.gcno -m
 	@gcovr -r . -e "src/array.c" -e "src/get_opt.c" --html --html-details -o coverage/index.html
 
 clean:
+	@echo "===== CLEANUP ====="
 	$(CLEANUP) $(TARGET1)
 
 ci: CFLAGS += -Werror

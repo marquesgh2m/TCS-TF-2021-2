@@ -14,11 +14,11 @@ compile:
 
 valgrind: compile
 	@$(MAKE) --no-print-directory -C Unity/examples/sort testvalgrind
-	 
+
 run:
 	@$(MAKE) --no-print-directory -C Unity/examples/sort run 
 
-sanitizer:
+sanitizer: clean
 	@$(MAKE) --no-print-directory -C Unity/examples/sort compilesanitizer
 
 gcov: run
