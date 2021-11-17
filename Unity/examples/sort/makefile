@@ -41,6 +41,13 @@ CFLAGS += -Wno-unknown-pragmas
 CFLAGS += -Wstrict-prototypes
 CFLAGS += -Wundef
 CFLAGS += -Wold-style-definition
+CFLAGS += -Wno-switch-default
+CFLAGS += -Wno-discarded-qualifiers
+CFLAGS += $(addprefix -Xcompiler ,$(CCFLAGS))
+CFLAGS += $(addprefix -Xlinker ,$(LDFLAGS))
+CFLAGS += -fprofile-arcs #GCOV
+CFLAGS += -ftest-coverage #GCOV
+
 
 TARGET_BASE1=all_tests
 TARGET1 = $(TARGET_BASE1)$(TARGET_EXTENSION)
@@ -49,19 +56,19 @@ SRC_FILES1=\
   $(UNITY_ROOT)/extras/fixture/src/unity_fixture.c \
   test/TestSort.c \
   test/test_runners/TestSort_Runner.c \
-  test/test_runners/all_tests.c
+  test/test_runners/all_tests.c \
+  src/sort.c \
+  src/get_opt.c \
+  src/array.c
   
 INC_DIRS=-Isrc -I$(UNITY_ROOT)/src -I$(UNITY_ROOT)/extras/fixture/src
-SYMBOLS=\
-  src/get_opt.o \
-  src/array.o \
-  src/sort.o
+SYMBOLS=
 
 # TEST PARAMETERS
 CPPCHECKFILE=cppcheck.log
 
 
-all: clean testcppcheck compile testgcov testvalgrind run compilesanitizer
+all: clean testcppcheck compile testvalgrind run compilesanitizer testgcov
 
 compile:
 	@echo "===== COMPILATION ====="
@@ -88,13 +95,16 @@ compilesanitizer:
 
 testgcov:
 	@echo "===== TEST GCOV COMP ====="
-	rm -fr $(ALL) *.o cov* *.dSYM *.gcda *.gcno *.gcov
-	$(C_COMPILER) $(CFLAGS) -fprofile-arcs -ftest-coverage $(INC_DIRS) $(SYMBOLS) $(SRC_FILES1) -o $(TARGET1)
-	./$(TARGET1) -v
-	rm -r unity*
-	mkdir -p coverage
-	gcov ***.gcno -m
-	gcovr -r . --html --html-details -o coverage/index.html
+	#rm -fr $(ALL) *.o cov* *.dSYM *.gcda *.gcno *.gcov
+	#rm -fr cov* *.dSYM *.gcda *.gcno *.gcov
+	#ADD TO CFLAGS += -fprofile-arcs #GCOV
+	#ADD TO CFLAGS += -ftest-coverage #GCOV
+	#$(C_COMPILER) $(CFLAGS) -fprofile-arcs -ftest-coverage $(INC_DIRS) $(SYMBOLS) $(SRC_FILES1) -o $(TARGET1)
+	#./$(TARGET1) -v
+	@rm -rf unity* # exclui pastas da unity do gcov
+	@mkdir -p coverage
+	@gcov ***.gcno -m
+	@gcovr -r . -e "src/array.c" -e "src/get_opt.c" --html --html-details -o coverage/index.html
 
 clean:
 	$(CLEANUP) $(TARGET1)
