@@ -15,16 +15,13 @@ jobs:
           command: sudo apt update 
       - run:
           name: "Install cppcheck"
-          command: sudo apt install cppcheck 
+          command: sudo apt install -y cppcheck 
       - run:
           name: "Install valgrind"
-          command: sudo apt install valgrind
-      - run:
-          name: "Install gcov"
-          command: sudo apt install gcov
+          command: sudo apt install -y valgrind
       - run:
           name: "Install gcovr"
-          command: sudo apt install gcovr
+          command: sudo apt install -y gcovr
       - run:
           name: "Open Test Dir"
           command: cd 
