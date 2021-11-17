@@ -6,6 +6,7 @@ Test results:
 
 Important files:
 
+* [Last Build Coverage](https://htmlpreview.github.io/?https://raw.githubusercontent.com/marquesgh2m/TCS-TF-2021-2/main/Unity/examples/sort/coverage/index.html)
 * [Makefile Unity](Unity/examples/sort/makefile)
 * [.circleci/config.yml](.circleci/config.yml)
 * [TestSort_Runner.c](Unity/examples/sort/test/test_runners/TestSort_Runner.c)
