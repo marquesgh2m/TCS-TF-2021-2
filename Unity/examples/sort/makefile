@@ -66,7 +66,7 @@ SYMBOLS=
 
 # TEST PARAMETERS
 CPPCHECKFILE=cppcheck.log
-
+VALGRINDFILE=valgrind.log
 
 all: clean testcppcheck compile testvalgrind run compilesanitizer testgcov
 
@@ -87,7 +87,9 @@ testcppcheck:
 
 testvalgrind:
 	@echo "===== TEST VALGRIND ====="
-	@valgrind --leak-check=full --show-leak-kinds=all ./all_tests.out
+	@rm -rf $(VALGRINDFILE)
+	@valgrind --leak-check=full --show-leak-kinds=all --quiet --log-file=$(VALGRINDFILE) ./all_tests.out
+	@test ! -s $(VALGRINDFILE) || (echo VALGRIND MEMORY ERROR! Log at $(VALGRINDFILE) && exit 1)  
 
 compilesanitizer:
 	@echo "===== SANITIZER COMPILATION ====="
