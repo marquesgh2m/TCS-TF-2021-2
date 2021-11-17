@@ -63,7 +63,7 @@ CPPCHECKFILE=cppcheck.log
 
 #all: clean testcppcheck compile testvalgrind run compilesanitizer
 
-all: clean testcppcheck compile run
+all: clean testcppcheck compile testvalgrind run
 
 compile:
 	@echo "===== COMPILATION ====="
@@ -79,6 +79,10 @@ testcppcheck:
 	@cppcheck --output-file=$(CPPCHECKFILE) src/sort.c
 	@test ! -s $(CPPCHECKFILE) || (echo CPPCHECK ERROR! && cat $(CPPCHECKFILE) && exit 1) 
 	@echo "OK"
+
+testvalgrind:
+	@echo "===== TEST VALGRIND ====="
+	@valgrind --leak-check=full --show-leak-kinds=all ./all_tests.out
 
 testgcov:
 	rm -fr $(ALL) *.o cov* *.dSYM *.gcda *.gcno *.gcov
