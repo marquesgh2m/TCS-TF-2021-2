@@ -74,8 +74,7 @@ ALL_LDFLAGS += $(addprefix -Xlinker ,$(EXTRA_LDFLAGS))
 # This part modified by Eugenio Pacceli Reis da Fonseca
 # DCC/UFMG
 # Target rules
-all: app
-	$(MAKE) -C Unity/examples/sort all
+all: 
 
 array.o:array.c
 	gcc -o $@ -c $<
@@ -96,7 +95,6 @@ run: build
 	./app
 
 clean:
-	$(MAKE) -C Unity/examples/sort clean
 	rm -f *.o
 	rm -f app
 	
