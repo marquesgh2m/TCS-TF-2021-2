@@ -41,7 +41,7 @@ TEST_SETUP(Sort)
 // Depois do teste unitario
 TEST_TEAR_DOWN(Sort)
 {
-    
+
 }
 
 /////////////////////////////////////////////////////////////////////////////////// 
@@ -204,6 +204,82 @@ TEST(Sort,InsertionSortEqualCaseNegative){
 
 /////////////////////////////////////////////////////////////////////////////////// 
 /////////////////////////// SHELL SORT
+TEST(Sort,ShellSortNormalCasePositive){
+    int output[SIZE];
+    memcpy(output, normal_case_positive_vector, SIZE * sizeof(int));
+
+    sort_array(output, SIZE, SHELL);
+
+    for (int i = 0; i < SIZE; ++i)
+    {
+        TEST_ASSERT_EQUAL(expected_positive_vector[i],output[i]);
+    }
+}
+TEST(Sort,ShellSortWorstCasePositive){
+    int output[SIZE];
+    memcpy(output, worst_case_positive_vector, SIZE * sizeof(int));
+
+    sort_array(output, SIZE, SHELL);
+
+    for (int i = 0; i < SIZE; ++i)
+    {
+        TEST_ASSERT_EQUAL(expected_positive_vector[i],output[i]);
+    }
+}
+TEST(Sort,ShellSortEqualCasePositive){
+    int output[SIZE];
+    memcpy(output, equal_case_positive_vector, SIZE * sizeof(int));
+
+    //printv("in", output, SIZE);
+    sort_array(output, SIZE, SHELL);
+    //printv("out", output, SIZE);
+
+    for (int i = 0; i < SIZE; ++i)
+    {
+        TEST_ASSERT_EQUAL(expected_equal_positive_vector[i],output[i]);
+    }
+}
+
+TEST(Sort,ShellSortNormalCaseNegative){
+    int output[SIZE];
+    memcpy(output, normal_case_negative_vector, SIZE * sizeof(int));
+
+    //printv("in", output, SIZE);
+    sort_array(output, SIZE, SHELL);
+    //printv("out", output, SIZE);
+
+
+    for (int i = 0; i < SIZE; ++i)
+    {
+        TEST_ASSERT_EQUAL(expected_negative_vector[i],output[i]);
+    }
+}
+TEST(Sort,ShellSortWorstCaseNegative){
+    int output[SIZE];
+    memcpy(output, worst_case_negative_vector, SIZE * sizeof(int));
+
+    //printv("in", output, SIZE);
+    sort_array(output, SIZE, SHELL);
+    //printv("out", output, SIZE);
+
+    for (int i = 0; i < SIZE; ++i)
+    {
+        TEST_ASSERT_EQUAL(expected_negative_vector[i],output[i]);
+    }
+}
+TEST(Sort,ShellSortEqualCaseNegative){
+    int output[SIZE];
+    memcpy(output, equal_case_negative_vector, SIZE * sizeof(int));
+
+    //printv("in", output, SIZE);
+    sort_array(output, SIZE, SHELL);
+    //printv("out", output, SIZE);
+
+    for (int i = 0; i < SIZE; ++i)
+    {
+        TEST_ASSERT_EQUAL(expected_equal_negative_vector[i],output[i]);
+    }
+}
 
 
 /////////////////////////////////////////////////////////////////////////////////// 

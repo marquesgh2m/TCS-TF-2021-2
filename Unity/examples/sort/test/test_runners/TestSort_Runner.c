@@ -5,7 +5,7 @@ TEST_GROUP_RUNNER(Sort)
 {
 
     /////////////////////////////////////////////////////////////////////////////////// 
-    /////////////////////////// SORT
+    /////////////////////////// SELECTION SORT
     RUN_TEST_CASE(Sort, SelectionSortNormalCasePositive);
     RUN_TEST_CASE(Sort, SelectionSortWorstCasePositive);
     RUN_TEST_CASE(Sort, SelectionSortEqualCasePositive);
@@ -26,6 +26,13 @@ TEST_GROUP_RUNNER(Sort)
 
     /////////////////////////////////////////////////////////////////////////////////// 
     /////////////////////////// SHELL SORT
+    RUN_TEST_CASE(Sort, ShellSortNormalCasePositive);
+    RUN_TEST_CASE(Sort, ShellSortWorstCasePositive);
+    RUN_TEST_CASE(Sort, ShellSortEqualCasePositive);
+
+    RUN_TEST_CASE(Sort, ShellSortNormalCaseNegative);
+    RUN_TEST_CASE(Sort, ShellSortWorstCaseNegative);
+    RUN_TEST_CASE(Sort, ShellSortEqualCaseNegative);
 
     /////////////////////////////////////////////////////////////////////////////////// 
     /////////////////////////// QUICK SORT
