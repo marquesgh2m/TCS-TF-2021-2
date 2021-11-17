@@ -1,25 +1,22 @@
 all:
-	@$(MAKE) -C Unity/examples/sort/src app
-	@$(MAKE) -C Unity/examples/sort all
+	@$(MAKE) --no-print-directory -C Unity/examples/sort/src app
+	@$(MAKE) --no-print-directory -C Unity/examples/sort all
 
 clean:
-	@$(MAKE) -C Unity/examples/sort clean
-	@$(MAKE) -C Unity/examples/sort/src clean
+	@$(MAKE) --no-print-directory -C Unity/examples/sort clean
+	@$(MAKE) --no-print-directory -C Unity/examples/sort/src clean
 
 cppcheck:
-	@$(MAKE) -C Unity/examples/sort testcppcheck 
+	@$(MAKE) --no-print-directory -C Unity/examples/sort testcppcheck 
 
 compile:
-	@$(MAKE) -C Unity/examples/sort compile 
+	@$(MAKE) --no-print-directory -C Unity/examples/sort compile 
 
 gcov:
-	@$(MAKE) -C Unity/examples/sort testgcov 
-
-valgrind:
-	@$(MAKE) -C Unity/examples/sort testvalgrind 
+	@$(MAKE) --no-print-directory -C Unity/examples/sort testgcov 
 
 run:
-	@$(MAKE) -C Unity/examples/sort run 
+	@$(MAKE) --no-print-directory -C Unity/examples/sort run 
 
 sanitizer:
-	@$(MAKE) -C Unity/examples/sort compilesanitizer
+	@$(MAKE) --no-print-directory -C Unity/examples/sort compilesanitizer

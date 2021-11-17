@@ -21,7 +21,7 @@ const int expected_equal_negative_vector[] = {-9,-8,-8,-7,-6,-6,-5,-5,-4,-4};
 
 // Print function for debug purposes
 // EX: printv("in", output, SIZE);
-void printv(char *txt, int * v_, int size_){
+void printv(const char *txt, int * v_, int size_){
     int n;
     printf("\n\t%s:", txt);
     for(n=0;n<size_;n++) {
