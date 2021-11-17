@@ -20,6 +20,12 @@ jobs:
           name: "Install valgrind"
           command: sudo apt install valgrind
       - run:
+          name: "Install gcov"
+          command: sudo apt install gcov
+      - run:
+          name: "Install gcovr"
+          command: sudo apt install gcovr
+      - run:
           name: "Open Test Dir"
           command: cd 
       - run:
