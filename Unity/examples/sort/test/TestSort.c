@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include "../../../../sort.h"
+#include "sort.h"
 
 #define SIZE 10
 

@@ -52,9 +52,9 @@ SRC_FILES1=\
   test/test_runners/all_tests.c
 INC_DIRS=-Isrc -I$(UNITY_ROOT)/src -I$(UNITY_ROOT)/extras/fixture/src
 SYMBOLS=\
-  ../$(UNITY_ROOT)/get_opt.o \
-  ../$(UNITY_ROOT)/array.o \
-  ../$(UNITY_ROOT)/sort.o
+  src/get_opt.o \
+  src/array.o \
+  src/sort.o
 
 all: clean compile run
 
