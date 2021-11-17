@@ -50,6 +50,7 @@ SRC_FILES1=\
   test/TestSort.c \
   test/test_runners/TestSort_Runner.c \
   test/test_runners/all_tests.c
+  
 INC_DIRS=-Isrc -I$(UNITY_ROOT)/src -I$(UNITY_ROOT)/extras/fixture/src
 SYMBOLS=\
   src/get_opt.o \
@@ -63,6 +64,14 @@ compile:
 
 run:
 	- ./$(TARGET1) -v
+
+testgcov:
+	$(C_COMPILER) $(CFLAGS) -fprofile-arcs -ftest-coverage $(INC_DIRS) $(SYMBOLS) $(SRC_FILES1) -o $(TARGET1)
+	./$(TARGET1) -v
+	rm -r unity*
+	gcov ***.gcno -m
+	gcovr -r . --html --html-details -o coverage/index.html
+	#rm -fr $(ALL) *.o cov* *.dSYM *.gcda *.gcno *.gcov
 
 clean:
 	$(CLEANUP) $(TARGET1)
