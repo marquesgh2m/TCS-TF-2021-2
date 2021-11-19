@@ -22,7 +22,9 @@
 
 void selection_sort(int *array, int size){
     int i, j, min, aux;
-    for (i = 0; i < (size-1); i++){
+    //char* string = malloc(5 * sizeof(char)); //Valgrind debug. LEAK: not freed!
+    //char *c = (char*)malloc(10 * sizeof(char*)); free(c); i=c[5]; // Sanitizer test
+      for (i = 0; i < (size-1); i++){
         min = i;
         for (j = (i+1); j < size; j++) {
             if(array[j] < array[min]){
@@ -108,7 +110,7 @@ void heap_sort(int array[], int n){
     int i = n/2, father, child, t;
 
     for(;;) {
-        if (i >= 0) {
+        if (i > 0) {
             i--;
             t = array[i];
         }
@@ -127,16 +129,16 @@ void heap_sort(int array[], int n){
 
         while (child < n){
             if ((child + 1 < n)  &&  (array[child + 1] > array[child])){
-                child++;
+              	child++;
             }
-            if (array[child] > t){
-                array[father] = array[child];
-                father = child;
-                child = father*2 + 1;
-            } else break;
-        }
-         array[father] = t;
-    }
+          	if (array[child] > t){
+             	array[father] = array[child];
+             	father = child;
+             	child = father*2 + 1;
+          	} else break;
+      	}
+     	 array[father] = t;
+   	}
 }
 
 void top_down_merge(int* a,int begin,int end,int* b){
